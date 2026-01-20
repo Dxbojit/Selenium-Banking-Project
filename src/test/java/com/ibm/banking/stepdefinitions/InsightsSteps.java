@@ -16,7 +16,7 @@ public class InsightsSteps {
 	private DashboardPage dashboardPage;
 	private InsightsPage insightsPage;
 
-	@Given("Given the user is logging into TDDBank")
+	@Given("the user is logging into TDDBank")
 	public void user_is_logged_in() {
 	    LoginPage loginPage = new LoginPage();
 	    loginPage.open();
