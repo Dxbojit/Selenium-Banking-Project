@@ -52,30 +52,39 @@ public class MyCardsSteps {
     }
 
     @When("I enter card number {string}")
-    public void enter_card_number(String number) {
-        // We use a simplified filling method here, or you can keep individual methods
-        // For now, I'll assume you want to keep the step granular, so we rely on the page logic
-        // Note: To keep Steps clean, we usually combine these in the PageObject, 
-        // but since your feature file is granular, we can call a type method directly:
-        myCardsPage.fillCardDetails(number, "", "", ""); 
-        // NOTE: Ideally, update your Page Object to have setCardNumber(String) 
-        // if you want to keep strictly one step per field.
+    public void enter_card_number(String number) throws InterruptedException {
+       
+    	
+        myCardsPage.enterCardNumber(number); 
+        
     }
     
-    // To match your previous granular steps, add these setters to MyCardsPage 
-    // OR create a temporary object here.
-    // For simplicity with the refactor, let's assume you updated the Page Object 
-    // to include specific setters, or we do this:
+    
     
     @When("I enter holder name {string}")
     public void enter_holder_name(String name) {
-        // Implementation depends on MyCardsPage having specific setters
+       
+    	myCardsPage.enterHolderName( name); 
     }
 
-    // ... (Keep other input steps similarly) ...
+   
+    @When("I enter expiry {string}")
+    public void i_enter_expiry(String string) {
+        
+    	myCardsPage.enterExpiry(string); 
+        
+    }
+
+    @When("I enter CVV {string}")
+    public void i_enter_cvv(String string) {
+        
+    	myCardsPage.enterCVV(string); 
+        
+    }
+
 
     @When("I click {string}")
-    public void click_provision(String btnText) {
+    public void click_provision(String btnText){
         myCardsPage.clickProvisionButton();
     }
 

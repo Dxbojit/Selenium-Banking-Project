@@ -8,11 +8,11 @@ public class MyCardsPage extends BasePage {
 	// --- Locators ---
 	// Changed access modifier to 'private' to match InsightsPage style
 	private By totalSpendingText = By.xpath("//div[text()='Total Spending']/following-sibling::div");
-	private By availableCreditText = By.xpath("/html/body/div[2]/main/div/div[2]");
+	private By availableCreditText = By.xpath("//div[contains(text(),'₹50,000')]");
 
 	// Add/Manage Card Elements
-	private By addDebitButton = By.xpath("//div[text()='Available Credit']/following-sibling::div");
-	private By provisionCardBtn = By.xpath("/html/body/div[2]/main/section[1]/div[2]/div[2]/div[2]/form/button");
+	private By addDebitButton = By.xpath("/html/body/div[2]/main/section[1]/div[2]/div[2]/button");
+	private By provisionCardBtn = By.xpath("//button[normalize-space()='Provision Card']");
 
 	// Inputs
 	private By cardNumberInput = By.cssSelector("input[placeholder='CARD NUMBER']");
@@ -48,18 +48,20 @@ public class MyCardsPage extends BasePage {
 	}
 
 	// Combined method for filling details (cleaner)
-	public void fillCardDetails(String number, String holder, String expiry, String cvv) {
-		type(cardNumberInput, number);
+	public void enterCardNumber(String number) {
+	    type(cardNumberInput, number);
+	}
 
-		if (holder != null && !holder.isEmpty()) {
-			type(cardHolderInput, holder);
-		}
+	public void enterHolderName(String holder) {
+	    type(cardHolderInput, holder);
+	}
 
-		type(expiryInput, expiry);
+	public void enterExpiry(String expiry) {
+	    type(expiryInput, expiry);
+	}
 
-		if (cvv != null && !cvv.isEmpty()) {
-			type(cvvInput, cvv);
-		}
+	public void enterCVV(String cvv) {
+	    type(cvvInput, cvv);
 	}
 
 	public void clickProvisionButton() {
@@ -74,9 +76,7 @@ public class MyCardsPage extends BasePage {
 	}
 
 	public void clickDeleteCreditCard() {
-		// Your framework likely handles waits inside 'click'. 
-		// If the button is hidden/hover-only, you might need a JS click.
-		// If BasePage has a 'clickJS' method, use that. Otherwise use standard click.
+		
 		click(deleteCreditBtn); 
 	}
 
