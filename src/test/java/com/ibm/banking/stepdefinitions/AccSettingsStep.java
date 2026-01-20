@@ -5,6 +5,8 @@ import java.util.Map;
 import org.testng.Assert;
 import com.ibm.banking.pages.AccSettingsPage;
 import com.ibm.banking.pages.DashboardPage;
+import com.ibm.banking.pages.LoginPage;
+
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -13,11 +15,19 @@ public class AccSettingsStep {
 
     private AccSettingsPage accSettingsPage = new AccSettingsPage();
     private DashboardPage dashboardPage = new DashboardPage();
+    
+    @Given("the user is logged into TDDBank")
+    public void the_user_is_on_the_tdd_bank_login_page() {
+    	 LoginPage loginPage = new LoginPage();
+         loginPage.open();
+         loginPage.login("user@tddbank.com", "password");
 
-    @Given("the user is on the dashboard")
-    public void the_user_is_on_the_dashboard() {
-        Assert.assertTrue(dashboardPage.isDashboardDisplayed(), "User is not on the dashboard!");
-    }
+         Assert.assertTrue(
+                 dashboardPage.isDashboardDisplayed(),
+                 "Dashboard not displayed after login"
+         );
+     }
+
 
   
     @Given("the user navigates to {string} from the navbar")
@@ -27,23 +37,7 @@ public class AccSettingsStep {
         accSettingsPage.selectDropdownOption(pageName);
         Assert.assertTrue(accSettingsPage.isSettingsPageOpened(), "Failed to navigate to " + pageName);
     }
-
-    @When("the user clicks on the {string} navbar dropdown")
-    public void the_user_clicks_on_the_navbar_dropdown(String username) {
-        accSettingsPage.clickNavbarDropdown(username);
-    }
-
-    @When("the user selects {string} from the dropdown menu")
-    public void the_user_selects_from_the_dropdown_menu(String option) {
-        accSettingsPage.selectDropdownOption(option);
-    }
-
-    @Then("the user should be redirected to the settings page")
-    public void the_user_should_be_redirected_to_the_settings_page() {
-        Assert.assertTrue(accSettingsPage.isSettingsPageOpened(), 
-            "Redirection to Account Settings page failed!");
-    }
-
+    
     @Then("the following sections should be visible:")
     public void the_following_sections_should_be_visible(io.cucumber.datatable.DataTable dataTable) {
         List<Map<String, String>> sections = dataTable.asMaps(String.class, String.class);
@@ -54,13 +48,11 @@ public class AccSettingsStep {
         }
     }
     
-    
     @When("the user clicks the {string} option for {string}")
     public void the_user_clicks_the_option_for(String action, String section) {
         accSettingsPage.clickEditForSection(section);
     }
 
-   
     @When("the user updates the {string} field with {string}")
     public void the_user_updates_the_field_with(String field, String newValue) {
         accSettingsPage.updateField(field, newValue);
@@ -86,4 +78,5 @@ public class AccSettingsStep {
         Assert.assertTrue(actualValue.contains(expectedValue), 
             "The field " + field + " does not display the updated value!");
     }
+    
 }
