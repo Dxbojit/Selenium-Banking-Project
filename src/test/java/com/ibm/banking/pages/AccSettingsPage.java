@@ -1,6 +1,8 @@
 package com.ibm.banking.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 import com.ibm.framework.base.BasePage;
 
 public class AccSettingsPage extends BasePage {
@@ -18,14 +20,13 @@ public class AccSettingsPage extends BasePage {
     // --- Actions ---
 
     public void clickNavbarDropdown(String name) {
-        // Use normalize-space to handle hidden tabs/spaces in the button text
+        
         By dropdown = By.xpath("//nav//button[contains(normalize-space(), '" + name + "')]");
         click(dropdown);
     }
 
     public void selectDropdownOption(String option) {
-        // Absolute XPaths are likely why the click is 'happening' but not 'registering' correctly
-        // Use a relative path to the anchor tag
+       
         By menuOption = By.xpath("//a[.//span[contains(text(),'" + option + "')]]");
         click(menuOption);
     }
@@ -53,5 +54,54 @@ public class AccSettingsPage extends BasePage {
                 break;
         }
         return isDisplayed(locator);
+    }
+    
+    public void clickEditForSection(String sectionName) {
+        // Finds a button containing 'Edit' that is a sibling or child of the section header
+        By editBtn = By.xpath("/html/body/main/div/div[2]/div[1]/div[1]/button");
+        click(editBtn);
+    }
+
+   
+    public void updateField(String fieldLabel, String value) {
+        // This XPath looks for a label with the field name and finds the input following it
+        By inputField = By.xpath("//label[contains(text(),'" + fieldLabel + "')]/following-sibling::input");
+        
+        
+        type(inputField, value);
+    }
+
+    public void clickSave() {
+        By saveBtn = By.xpath("//button[contains(text(),'Save')]");
+        click(saveBtn);
+    }
+
+    
+    public String getFieldValue(String fieldLabel) {
+        By valueLabel = By.xpath("//*[contains(text(),'" + fieldLabel + "')]/following-sibling::*");
+        return getText(valueLabel);
+    }
+    
+    public String getSuccessMessage1() {
+        try {
+            // Wait up to 5 seconds for the alert to pop up
+            WebDriverWait wait = new WebDriverWait(com.ibm.framework.driver.DriverFactory.getDriver(), java.time.Duration.ofSeconds(5));
+            wait.until(org.openqa.selenium.support.ui.ExpectedConditions.alertIsPresent());
+
+            // Switch to the alert and get the text
+            org.openqa.selenium.Alert alert = com.ibm.framework.driver.DriverFactory.getDriver().switchTo().alert();
+            String alertText = alert.getText();
+
+            // Print to console so you can see it in the logs
+            System.out.println("Alert detected: " + alertText);
+
+            // Accept (Click OK) so the driver can keep working
+            alert.accept();
+
+            return alertText;
+        } catch (org.openqa.selenium.TimeoutException e) {
+            // If no alert appeared, maybe it's a regular web element on the page?
+            return "No alert detected";
+        }
     }
 }

@@ -13,11 +13,19 @@ public class AccSettingsStep {
 
     private AccSettingsPage accSettingsPage = new AccSettingsPage();
     private DashboardPage dashboardPage = new DashboardPage();
-    
+
     @Given("the user is on the dashboard")
     public void the_user_is_on_the_dashboard() {
-        
         Assert.assertTrue(dashboardPage.isDashboardDisplayed(), "User is not on the dashboard!");
+    }
+
+  
+    @Given("the user navigates to {string} from the navbar")
+    public void navigate_to_settings_via_navbar(String pageName) {
+        
+        accSettingsPage.clickNavbarDropdown("Test User");
+        accSettingsPage.selectDropdownOption(pageName);
+        Assert.assertTrue(accSettingsPage.isSettingsPageOpened(), "Failed to navigate to " + pageName);
     }
 
     @When("the user clicks on the {string} navbar dropdown")
@@ -38,16 +46,44 @@ public class AccSettingsStep {
 
     @Then("the following sections should be visible:")
     public void the_following_sections_should_be_visible(io.cucumber.datatable.DataTable dataTable) {
-        
         List<Map<String, String>> sections = dataTable.asMaps(String.class, String.class);
-        
         for (Map<String, String> row : sections) {
             String sectionName = row.get("Section Name");
-            
-            
             boolean isVisible = accSettingsPage.isSectionVisible(sectionName);
-            
-            Assert.assertTrue(isVisible, "UI Section '" + sectionName + "' was not found on the page!");
+            Assert.assertTrue(isVisible, "UI Section '" + sectionName + "' was not found!");
         }
+    }
+    
+    
+    @When("the user clicks the {string} option for {string}")
+    public void the_user_clicks_the_option_for(String action, String section) {
+        accSettingsPage.clickEditForSection(section);
+    }
+
+   
+    @When("the user updates the {string} field with {string}")
+    public void the_user_updates_the_field_with(String field, String newValue) {
+        accSettingsPage.updateField(field, newValue);
+    }
+
+    
+    @When("the user clicks the {string} button")
+    public void the_user_clicks_the_button(String buttonName) {
+        if(buttonName.equalsIgnoreCase("Save Changes")) {
+            accSettingsPage.clickSave();
+        }
+    }
+
+    @Then("a success message {string} should be displayed")
+    public void a_success_message_should_be_displayed(String expectedMessage) {
+        String actualMessage = accSettingsPage.getSuccessMessage1();
+        Assert.assertEquals(actualMessage, expectedMessage, "Success message did not match!");
+    }
+
+    @Then("the {string} section should display {string}")
+    public void the_section_should_display(String field, String expectedValue) {
+        String actualValue = accSettingsPage.getFieldValue(field);
+        Assert.assertTrue(actualValue.contains(expectedValue), 
+            "The field " + field + " does not display the updated value!");
     }
 }
