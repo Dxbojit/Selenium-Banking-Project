@@ -5,33 +5,38 @@ import org.testng.Assert;
 import com.ibm.banking.pages.DashboardPage;
 import com.ibm.banking.pages.InsightsPage;
 import com.ibm.banking.pages.LoginPage;
-import com.ibm.framework.utils.ScreenshotUtils;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class InsightsSteps {
 
-    private DashboardPage dashboardPage = new DashboardPage();
-    private InsightsPage insightsPage = new InsightsPage();
+	private DashboardPage dashboardPage;
+	private InsightsPage insightsPage;
 
-    @Given("the user is logged into TDDBank")
-    public void user_is_logged_in() {
-        LoginPage loginPage = new LoginPage();
-        loginPage.open();
-        loginPage.login("admin@tddbank.com", "123456");
+	@Given("Given the user is logging into TDDBank")
+	public void user_is_logged_in() {
+	    LoginPage loginPage = new LoginPage();
+	    loginPage.open();
+	    loginPage.login("admin@tddbank.com", "123456");
 
-        Assert.assertTrue(
-                dashboardPage.isDashboardDisplayed(),
-                "Dashboard not displayed after login"
-        );
-    }
+	    dashboardPage = new DashboardPage();
 
-    @Given("the user navigates to the Insights page")
-    public void user_navigates_to_insights() {
-        dashboardPage.openInsights();
-    }
+	    Assert.assertTrue(
+	            dashboardPage.isDashboardDisplayed(),
+	            "Dashboard not displayed after login"
+	    );
+	}
+
+
+	@And("the user navigates to the Insights page")
+	public void user_navigates_to_insights() {
+	    dashboardPage.openInsights();   // click Insights
+	    insightsPage = new InsightsPage(); // ✅ initialize after navigation
+	}
+
 
     @Then("the navbar should be displayed")
     public void navbar_should_be_displayed() {

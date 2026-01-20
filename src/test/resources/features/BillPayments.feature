@@ -28,3 +28,8 @@ Feature: Bill Payments Page Validation
   Scenario: Verify Navigation to Transaction History
     When the user clicks on the Transaction History button
     Then the user should be redirected to the insights page
+    
+  @regression
+  Scenario:Verify all dues button is working
+  	When the user clicks on view all dues
+  	Then the user is redirected to all dues page

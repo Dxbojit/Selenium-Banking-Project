@@ -2,7 +2,7 @@
 Feature: Financial Insights Page validation
 
   Background:
-    Given the user is logged into TDDBank
+    Given the user is logging into TDDBank
     And the user navigates to the Insights page
 
   @regression

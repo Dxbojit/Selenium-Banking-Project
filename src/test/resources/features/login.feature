@@ -25,3 +25,8 @@ Feature: Login Functionality for TDD Bank
       | admin@tddbank.com       | password     |  # Correct email, wrong pass
       | unknown@tddbank.com     | bankmanager  |  # Unregistered email
       | user1@tddbank.com       | 123456       |  # Non-existent user
+      
+   @smoke
+   Scenario Outline:Verify Forget password link
+   When the user clicks on forgot password
+   Then the user is redirected to forgot password page

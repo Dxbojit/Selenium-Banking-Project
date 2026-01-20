@@ -16,6 +16,7 @@ public class DashboardPage extends BasePage {
         return isDisplayed(totalAvailableBalanceLabel);
     }
     public void openInsights() {
-        click(insightsCard);
+        click(insightsCard);  // uses BasePage wait
     }
+
 }

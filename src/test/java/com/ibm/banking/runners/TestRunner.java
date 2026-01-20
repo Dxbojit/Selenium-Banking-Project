@@ -9,7 +9,7 @@ import io.cucumber.testng.CucumberOptions;
 	        "com.ibm.banking.stepdefinitions",
 	        "com.ibm.banking.hooks"
 	    },
-	    tags="@updateProfile",
+	    tags="@Transaction",
 	    plugin = {
 	        "pretty",
 	        "html:target/cucumber-report.html",

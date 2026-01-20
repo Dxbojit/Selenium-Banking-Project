@@ -2,11 +2,14 @@ package com.ibm.banking.stepdefinitions;
 
 import java.util.List;
 import java.util.Map;
+
 import org.testng.Assert;
+
 import com.ibm.banking.pages.AccSettingsPage;
 import com.ibm.banking.pages.DashboardPage;
 import com.ibm.banking.pages.LoginPage;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -28,9 +31,9 @@ public class AccSettingsStep {
          );
      }
 
-
+    
   
-    @Given("the user navigates to {string} from the navbar")
+    @And("the user navigates to {string} from the navbar")
     public void navigate_to_settings_via_navbar(String pageName) {
         
         accSettingsPage.clickNavbarDropdown("Test User");
