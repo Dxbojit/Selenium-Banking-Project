@@ -1,1 +1,18 @@
-/target/
+# Maven build output
+target/
+
+# TestNG reports
+test-output/
+
+# Cucumber reports
+cucumber-report.html
+cucumber.json
+
+# Compiled files
+*.class
+
+# IDE files
+.classpath
+.project
+.settings/
+.idea/
