@@ -2,6 +2,7 @@ package com.ibm.framework.base;
 
 import java.time.Duration;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -63,6 +64,14 @@ public class BasePage {
 		WebElement element=waitForClickable(locator);
 		Select options=new Select(element);
 		return options;
+	}
+	
+	protected String handleAlert()
+	{
+		Alert al=DriverFactory.getDriver().switchTo().alert();
+		String alertMsg=al.getText();
+		al.accept();
+		return alertMsg;
 	}
 
 }
