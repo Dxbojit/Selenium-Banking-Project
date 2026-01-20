@@ -4,9 +4,11 @@ import org.openqa.selenium.Cookie;
 
 import com.ibm.framework.config.ConfigReader;
 import com.ibm.framework.driver.DriverFactory;
+import com.ibm.framework.utils.ScreenshotUtils;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
 
 public class Hooks {
 	
@@ -26,7 +28,18 @@ public class Hooks {
 	}
 	
 	@After
-	public void tearDown() {
-		DriverFactory.quitDriver();
+	public void tearDown(Scenario scenario) {
+		 if (scenario.isFailed()) {
+	            System.out.println(
+	                "[INFO] Scenario failed. Taking screenshot: "
+	                + scenario.getName()
+	            );
+
+	            ScreenshotUtils.takeScreenshot(
+	                scenario.getName().replaceAll(" ", "_")
+	            );
+	        }
+
+	        DriverFactory.quitDriver();
 	}
 }

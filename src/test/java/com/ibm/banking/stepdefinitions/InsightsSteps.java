@@ -5,6 +5,7 @@ import org.testng.Assert;
 import com.ibm.banking.pages.DashboardPage;
 import com.ibm.banking.pages.InsightsPage;
 import com.ibm.banking.pages.LoginPage;
+import com.ibm.framework.utils.ScreenshotUtils;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -51,6 +52,7 @@ public class InsightsSteps {
                 insightsPage.isTransactionsSectionVisible(),
                 "Transactions section not visible"
         );
+
     }
 
     @When("the user clicks on Filter by Month")
