@@ -9,11 +9,11 @@ import io.cucumber.testng.CucumberOptions;
 	        "com.ibm.banking.stepdefinitions",
 	        "com.ibm.banking.hooks"
 	    },
-	    tags="@insights",
 	    plugin = {
 	        "pretty",
 	        "html:target/cucumber-report.html",
-	        "json:target/cucumber.json"
+	        "json:target/cucumber.json",
+	        "junit:target/cucumber.xml"
 	    },
 	    monochrome = true
 	)
