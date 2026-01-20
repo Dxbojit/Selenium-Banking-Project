@@ -7,6 +7,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.ibm.framework.driver.DriverFactory;
@@ -58,5 +59,10 @@ public class BasePage {
 		act.moveToElement(element).perform();
 	}
 	
+	protected Select selectDropdown(By locator) {
+		WebElement element=waitForClickable(locator);
+		Select options=new Select(element);
+		return options;
+	}
 
 }
