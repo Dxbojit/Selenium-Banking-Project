@@ -5,16 +5,16 @@ Feature: Financial Insights Page validation
     Given the user is logging into TDDBank
     And the user navigates to the Insights page
 
-  @regression @insights
+  @regression
   Scenario: Navbar should be visible on Insights page
     Then the navbar should be displayed
     
-  @regression @transactions @insights
+  @regression @transactions
   Scenario: View All Transactions button should work
     When the user clicks on View All Transactions
     Then the transactions section should be displayed
     
-  @regression @filter @insights
+  @regression @filter
   Scenario: Filter by Month dropdown should open
     When the user clicks on Filter by Month
     Then the user should be able to select a month
