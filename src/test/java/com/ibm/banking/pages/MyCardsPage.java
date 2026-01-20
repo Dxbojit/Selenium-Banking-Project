@@ -8,11 +8,11 @@ public class MyCardsPage extends BasePage {
 	// --- Locators ---
 	// Changed access modifier to 'private' to match InsightsPage style
 	private By totalSpendingText = By.xpath("//div[text()='Total Spending']/following-sibling::div");
-	private By availableCreditText = By.xpath("//div[text()='Available Credit']/following-sibling::div");
+	private By availableCreditText = By.xpath("/html/body/div[2]/main/div/div[2]");
 
 	// Add/Manage Card Elements
-	private By addDebitButton = By.xpath("//span[text()='Add Debit']");
-	private By provisionCardBtn = By.xpath("//button[contains(text(), 'Provision Card')]");
+	private By addDebitButton = By.xpath("//div[text()='Available Credit']/following-sibling::div");
+	private By provisionCardBtn = By.xpath("/html/body/div[2]/main/section[1]/div[2]/div[2]/div[2]/form/button");
 
 	// Inputs
 	private By cardNumberInput = By.cssSelector("input[placeholder='CARD NUMBER']");
@@ -21,12 +21,12 @@ public class MyCardsPage extends BasePage {
 	private By cvvInput        = By.cssSelector("input[placeholder='CVV']");
 
 	// Error & Delete
-	private By errorMessage    = By.xpath("//p[contains(@class, 'text-red-500')]");
-	private By deleteCreditBtn = By.xpath("//div[contains(text(), 'TDD Credit Line')]/ancestor::div[contains(@class, 'relative')]//button");
-	private By addCreditSlot   = By.xpath("//span[text()='Add Credit']");
+	private By errorMessage    = By.xpath("//p[@class='text-");
+	private By deleteCreditBtn = By.xpath("(//button[@class='absolute -top-3 -right-3 p-2.5 bg-red-500 text-white rounded-full shadow-xl opacity-0 group-hover:opacity-100 transition-all hover:bg-red-600 focus:opacity-100 scale-75 group-hover:scale-100 z-20 border-4 border-white'])[1]");
+	private By addCreditSlot   = By.xpath("//button[@class='w-full aspect-/50 transition-all group overflow-hidden relative']");
 
 	// Navigation (If not already in DashboardPage)
-	private By myCardsLink     = By.xpath("/html/body/main/main/section/div/div[4]");
+	private By myCardsLink     = By.xpath("//body//main//div[4]");
 
 	// --- Actions ---
 
