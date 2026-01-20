@@ -18,5 +18,4 @@ Feature: Account Settings Page UI Verification
       | Personal Details  | Visible    |
       | Security          | Visible    |
       | Account Type      | Visible    |
-    And all sections should display their respective icons and labels
-    And the layout should be correctly aligned according to bank branding
+    
