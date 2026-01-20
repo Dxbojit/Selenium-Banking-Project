@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 @regression @movemoney
-=======
 @Transaction
->>>>>>> e1e3038 (Completed Transactions Page Test)
 Feature: Money Transfer Functionality
   This feature verifies different types of money transfers and beneficiary management using data-driven tests
 
@@ -13,12 +10,9 @@ Feature: Money Transfer Functionality
   # =========================================
   # TC_TRFR_01 - Transfer to Saved Beneficiary
   # =========================================
-<<<<<<< HEAD
 
   @regression @savedBeneficiary
-=======
 @Quick_Transfer
->>>>>>> e1e3038 (Completed Transactions Page Test)
   Scenario Outline: Transfer to saved beneficiary
     When the user selects a saved beneficiary
     And the user enters amount "<amount>"
@@ -36,11 +30,8 @@ Feature: Money Transfer Functionality
   # TC_TRFR_02 - Other Bank
   # ===========================
 
-<<<<<<< HEAD
   @regression @otherBank
-=======
   @New_Transfer_Other
->>>>>>> e1e3038 (Completed Transactions Page Test)
   Scenario Outline: Transfer to other bank
     When the user navigates to "New Transfer"
     And the user selects "Other Bank"
@@ -62,11 +53,8 @@ Feature: Money Transfer Functionality
   # TC_TRFR_03 - Own Account
   # ===========================
 
-<<<<<<< HEAD
   @regression @ownAccount
-=======
   @New_Transfer_Own
->>>>>>> e1e3038 (Completed Transactions Page Test)
   Scenario Outline: Own account transfer
     When the user navigates to "New Transfer"
     And the user selects "Own Account"
@@ -95,11 +83,8 @@ Feature: Money Transfer Functionality
   # TC_TRFR_04 - Add Beneficiary
   # ===========================
 
-<<<<<<< HEAD
   @regression @addBeneficiary
-=======
   @Add_Beneficiary
->>>>>>> e1e3038 (Completed Transactions Page Test)
   Scenario Outline: Add new beneficiary
     When the user navigates to "Manage Beneficiaries"
     And the user clicks on Add New
