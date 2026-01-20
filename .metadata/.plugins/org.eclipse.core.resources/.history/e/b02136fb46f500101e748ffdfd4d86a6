@@ -1,0 +1,34 @@
+Feature: Transactions Page Functionality
+  As a user
+  I want to search, filter, and export transactions
+  So that I can manage and analyze transaction records efficiently
+
+  Background:
+    Given the user is logged into the application
+    And the user is on the "Transactions" page
+
+  @Search
+  Scenario: TC_TRFR_01 - Search for a specific transaction by Transaction ID
+    When the user enters a valid Transaction ID in the search input field
+    And the user clicks the "Search" button
+    Then the transaction table should display only the record matching that Transaction ID
+
+  @Filter
+  Scenario: TC_TRFR_02 - Filter transactions by status
+    When the user opens the "Status" filter dropdown
+    And the user selects "Completed"
+    And the user clicks the "Apply" button
+    Then only transactions with status "Completed" should be displayed in the table
+
+  @Filter
+  Scenario: TC_TRFR_03 - Filter transactions by date range
+    When the user selects a Start Date and an End Date from the date picker
+    And the user clicks the "Filter" button
+    Then only transactions within the selected date range should be displayed in the table
+
+  @Export
+  Scenario: TC_TRFR_04 - Export transaction report to CSV
+    When the user clicks the "Export" button
+    And the user selects "CSV" as the export format
+    Then a file named "Transactions_Report.csv" should be downloaded
+    And the file should contain the same data as currently shown in the transaction table
