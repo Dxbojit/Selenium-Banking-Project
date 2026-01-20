@@ -6,7 +6,11 @@
       <class name="com.ibm.banking.runners.TestRunner">
         <methods>
           <include name="setUpClass"/>
+<<<<<<< HEAD
           <include name="runScenario" invocation-numbers="1"/>
+=======
+          <include name="runScenario" invocation-numbers="3 10"/>
+>>>>>>> e1e3038 (Completed Transactions Page Test)
           <include name="tearDownClass"/>
         </methods>
       </class> <!-- com.ibm.banking.runners.TestRunner -->

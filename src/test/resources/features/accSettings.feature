@@ -1,4 +1,13 @@
+<<<<<<< HEAD
 Feature: Account Settings Page Functionality
+=======
+@Account_Settings
+Feature: Account Settings Page UI Verification
+
+  As a registered user of TDD Bank
+  I want to navigate to my Account Settings
+  So that I can verify my personal details, security options, and account type are visible
+>>>>>>> e1e3038 (Completed Transactions Page Test)
 
   Background: 
     Given the user is logged into TDDBank 

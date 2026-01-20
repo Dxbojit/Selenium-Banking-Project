@@ -33,6 +33,7 @@
 		    <artifactId>cucumber-testng</artifactId>
 		    <version>7.33.0</version>
 		</dependency>
+<<<<<<< HEAD
 		
 		<!--Extent report dependency-->
 		<dependency>
@@ -41,5 +42,7 @@
 		    <version>5.1.1</version>
 		</dependency>
 
+=======
+>>>>>>> e1e3038 (Completed Transactions Page Test)
   </dependencies>
 </project>
